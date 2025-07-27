@@ -17,7 +17,7 @@ def start(update, context):
 def post_signal(update, context):
     signal = ' '.join(context.args)
     if signal:
-        context.bot.send_message(chat_id=CHANNEL_ID, text=f'📈 *NEW SIGNAL*
+        context.bot.send_message(chat_id=CHANNEL_ID, text=f"📉 *NEW SIGNAL*\nPair: XAUUSD\nEntry: {entry}\nSL: {sl}\nTP: {tp}")
 {signal}', parse_mode='Markdown')
         update.message.reply_text('Signal sent!')
     else:
