@@ -1,5 +1,5 @@
-import logging
 import os
+import logging
 from telegram import Bot
 from telegram.ext import Updater, CommandHandler
 from dotenv import load_dotenv
@@ -12,16 +12,16 @@ CHANNEL_ID = os.getenv("CHANNEL_ID")
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 def start(update, context):
-    update.message.reply_text('Welcome to Nathan FX Signal Bot! 🚀')
+    update.message.reply_text("Welcome to NathanFX Signal Bot!")
 
 def post_signal(update, context):
-    signal = ' '.join(context.args)
-    if signal:
-        context.bot.send_message(chat_id=CHANNEL_ID, text=f"📉 *NEW SIGNAL*\nPair: XAUUSD\nEntry: {entry}\nSL: {sl}\nTP: {tp}")
-{signal}', parse_mode='Markdown')
-        update.message.reply_text('Signal sent!')
+    signal_text = ' '.join(context.args)
+    if signal_text:
+        message = f"📉 *NEW SIGNAL*\n\n{signal_text}"
+        context.bot.send_message(chat_id=CHANNEL_ID, text=message, parse_mode='Markdown')
+        update.message.reply_text("Signal sent ✅")
     else:
-        update.message.reply_text('Please provide a signal to post.')
+        update.message.reply_text("Please provide a signal after the /signal command.")
 
 def main():
     updater = Updater(TOKEN, use_context=True)
